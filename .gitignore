@@ -1,25 +1,46 @@
+# Node modules
+node_modules/
+
 # Logs
 logs
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Environment variables
 .env
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
+# TypeScript compiled files
+dist/
+build/
+
+# Cache
+.cache/
+.nyc_output/
+
+# IDE files
+.idea/
+.vscode/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Lock files
+package-lock.json
+yarn.lock
+
+# TypeScript
+*.tsbuildinfo
+
+# Coverage directory
+coverage/
+
+# Temp files
+tmp/
+temp/
