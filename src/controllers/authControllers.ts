@@ -4,6 +4,11 @@ import createToken from "../utils/token";
 import adminModel from "../models/adminModel";
 import responseReturn from "../utils/response";
 
+interface GetUserRequest extends Request {
+  id?: string;
+  role?: string;
+}
+
 const adminLogin = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   try {
@@ -24,6 +29,25 @@ const adminLogin = async (req: Request, res: Response) => {
       }
     } else {
       responseReturn(res, 400, { message: "Email not found" });
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      responseReturn(res, 500, { message: error.message });
+    } else {
+      responseReturn(res, 500, { message: "An unknown error occurred" });
+    }
+  }
+};
+
+const getUser = async (req: GetUserRequest, res: Response) => {
+  const { id, role } = req;
+
+  try {
+    if (role === "admin") {
+      const user = await adminModel.findById(id);
+      responseReturn(res, 200, { userInfo: user });
+    } else {
+      console.log("It's a seller");
     }
   } catch (error) {
     if (error instanceof Error) {
